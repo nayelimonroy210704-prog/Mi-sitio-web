@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Define la codificación de caracteres para permitir acentos y eñes -->
+    <meta charset="UTF-8">
+    <!-- Asegura que el sitio sea adaptable (responsive) en dispositivos móviles -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nayeli Monroy | Fotografía, Podcast y Redes</title>
+    <!-- Vinculación de la hoja de estilos externa -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Iconos externos para redes sociales y diseño -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Encabezado principal del sitio (Navegación) -->
+    <header class="header">
+        <div class="nav-container">
+            <!-- Logotipo o nombre de la marca personal -->
+            <a href="index.html" class="logo">Nayeli Monroy<span>.</span></a>
+            
+            <!-- Menú de navegación principal -->
+            <nav class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link active">Inicio</a>
+                <a href="sobre-mi.html" class="nav-link">Sobre Mí</a>
+                <a href="contacto.html" class="nav-link">Contacto</a>
+            </nav>
+
+            <!-- Botón para menú móvil (hamburguesa) -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Sección del Carrusel de Imágenes Destacadas -->
+    <section class="carousel-container">
+        <div class="carousel-slide active">
+            <!-- Imagen de fondo -->
+            <img src="img1.jpg" alt="imagen1">
+            <div class="carousel-caption">
+                <span class="category">Fotografía</span>
+                <h2>Miradas que cuentan una historia</h2>
+                <p>Me interesa crear imágenes con intención, cuidar la luz y convertir momentos cotidianos en piezas visuales memorables.</p>
+            </div>
+        </div>
+
+        <div class="carousel-slide">
+            <img src="img2.jpg" alt="imagen2">
+            <div class="carousel-caption">
+                <span class="category">Podcast</span>
+                <h2>Edición de audio con ritmo y claridad</h2>
+                <p>Trabajo la limpieza, estructura y atmósfera sonora para que cada episodio se escuche profesional y mantenga la atención.</p>
+            </div>
+        </div>
+
+        <div class="carousel-slide">
+            <img src="img3.jpg" alt="imagen3">
+            <div class="carousel-caption">
+                <span class="category">Redes Sociales</span>
+                <h2>Contenido visual pensado para conectar</h2>
+                <p>Diseño ideas para formatos digitales, desde reels y publicaciones hasta piezas audiovisuales listas para compartir.</p>
+            </div>
+        </div>
+
+        <!-- Botones de navegación del carrusel -->
+        <button class="carousel-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-btn next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+    </section>
+
+    <!-- Contenedor Principal del Blog (Grid de artículos) -->
+    <main class="main-content container">
+        <h1 class="section-title">Artículos Recientes</h1>
+        
+        <div class="blog-grid">
+            <!-- Artículo 1 -->
+            <article class="blog-card">
+                <div class="card-img">
+                    <img src="edicion.jpg" alt="Noticias">
+                </div>
+                <div class="card-content">
+                    <span class="card-date">10 de Junio, 2026</span>
+                    <h3>Cómo una buena edición transforma un video corto</h3>
+                    <p>Reflexiones sobre ritmo, cortes, música y detalles visuales que hacen que un reel se sienta más dinámico y profesional.</p>
+                    <a href="#" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- Artículo 2 -->
+            <article class="blog-card">
+                <div class="card-img">
+                    <img src="redessociales.jpg" alt="Marketing">
+                </div>
+                <div class="card-content">
+                    <span class="card-date">02 de Junio, 2026</span>
+                    <h3>Fotografía para redes: identidad antes que tendencia</h3>
+                    <p>Ideas para construir una estética visual coherente sin depender únicamente de lo que está de moda en cada plataforma.</p>
+                    <a href="#" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <!-- Artículo 3 -->
+            <article class="blog-card">
+                <div class="card-img">
+                    <img src="audio.jpg" alt="Redacción">
+                </div>
+                <div class="card-content">
+                    <span class="card-date">28 de Mayo, 2026</span>
+                    <h3>Podcast: limpiar audio sin borrar personalidad</h3>
+                    <p>Una mirada al equilibrio entre calidad técnica, naturalidad de la voz y narrativa sonora en la edición de episodios.</p>
+                    <a href="#" class="read-more">Leer más <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Pie de página general -->
+    <footer class="footer">
+        <p>&copy; 2026 Nayeli Monroy. Todos los derechos reservados. Fotografía, podcast y contenido digital.</p>
+    </footer>
+
+    <!-- Vinculación del script lógico de Javascript -->
+    <script src="script.js"></script>
+</body>
+</html>

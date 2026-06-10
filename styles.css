@@ -1,0 +1,520 @@
+/* ==========================================
+   1. VARIABLES DE DISEÑO (Colores y Fuentes)
+   ========================================== */
+:root {
+    --bg-primary: #101114;
+    --bg-panel: #18191f;
+    --bg-panel-soft: #20222b;
+    --color-text-main: #f7efe4;
+    --color-text-muted: #b8aea2;
+    --accent-color: #d9853b;
+    --accent-secondary: #3bb7ad;
+    --border-color: #36323a;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+}
+/* Reset básico para estandarizar comportamientos entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background:
+        linear-gradient(180deg, rgba(217, 133, 59, 0.08), transparent 380px),
+        linear-gradient(90deg, rgba(59, 183, 173, 0.08), transparent 42%),
+        var(--bg-primary);
+    color: var(--color-text-main);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Contenedor estándar para limitar el ancho del diseño */
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+/* ==========================================
+   2. ENCABEZADO Y MENÚ DE NAVEGACIÓN
+   ========================================== */
+.header {
+    background-color: rgba(16, 17, 20, 0.88);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(14px);
+}
+
+.nav-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--color-text-main);
+    text-transform: uppercase;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--color-text-muted);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--color-text-main);
+    border-bottom: 2px solid var(--accent-color);
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-text-main);
+}
+
+/* ==========================================
+   3. COMPONENTE: CARRUSEL DE IMÁGENES
+   ========================================== */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 76vh;
+    background-color: #000;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.carousel-container::before,
+.carousel-container::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 9vh;
+    background: #050507;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.carousel-container::before {
+    top: 0;
+}
+
+.carousel-container::after {
+    bottom: 0;
+}
+
+.carousel-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.carousel-slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(112%) saturate(92%) brightness(52%);
+}
+
+.carousel-slide img.empty-image,
+.about-image img.empty-image {
+    background: linear-gradient(135deg, #111217 0%, #2f1d24 48%, #d9853b 100%);
+    display: block;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 18%;
+    left: 10%;
+    right: 10%;
+    color: #fff;
+    z-index: 3;
+    max-width: 760px;
+    padding-left: 1.25rem;
+    border-left: 4px solid var(--accent-color);
+    text-shadow: 0 12px 30px rgba(0, 0, 0, 0.85);
+}
+
+.carousel-caption .category {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    color: var(--accent-color);
+    font-weight: 800;
+}
+
+.carousel-caption h2 {
+    font-family: var(--font-serif);
+    font-size: 3.4rem;
+    line-height: 1.05;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.carousel-caption p {
+    color: #f4e7d8;
+    max-width: 640px;
+    font-size: 1.05rem;
+}
+
+/* Botones de control del carrusel */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(16, 17, 20, 0.72);
+    border: 1px solid rgba(247, 239, 228, 0.24);
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 3;
+    transition: background 0.3s, border-color 0.3s, transform 0.3s;
+}
+
+.carousel-btn:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-50%) scale(1.04);
+}
+
+.carousel-btn.prev { left: 20px; }
+.carousel-btn.next { right: 20px; }
+
+/* ==========================================
+   4. SECCIÓN BLOG (Grid de Artículos)
+   ========================================== */
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 2.35rem;
+    margin-bottom: 2.5rem;
+    text-align: left;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 1rem;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+}
+
+.blog-card {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(217, 133, 59, 0.55);
+    box-shadow: 0 22px 44px rgba(0, 0, 0, 0.34);
+}
+
+.card-img img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    filter: contrast(108%) saturate(86%);
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-date {
+    font-size: 0.8rem;
+    color: var(--accent-secondary);
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.card-content h3 {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.card-content p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.read-more {
+    text-decoration: none;
+    color: var(--accent-color);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.read-more:hover {
+    color: var(--color-text-main);
+}
+
+/* ==========================================
+   5. PÁGINAS INTERNAS (Sobre mí & Contacto)
+   ========================================== */
+.page-layout {
+    padding-top: 3rem;
+}
+
+.about-section {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 4rem;
+    align-items: center;
+    background: rgba(24, 25, 31, 0.72);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.about-image img {
+    width: 100%;
+    min-height: 420px;
+    border-radius: 8px;
+    filter: contrast(108%) saturate(82%);
+    object-fit: cover;
+    border: 1px solid rgba(247, 239, 228, 0.14);
+}
+
+.about-text .subtitle {
+    color: var(--accent-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.about-text h2 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    margin: 0.5rem 0 1.5rem 0;
+}
+
+.about-text p {
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.skills ul {
+    list-style: none;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.skills ul li i {
+    color: var(--accent-color);
+    margin-right: 0.5rem;
+}
+
+.skills li {
+    background: var(--bg-panel-soft);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.85rem;
+}
+
+.contact-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    background: rgba(24, 25, 31, 0.72);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+}
+
+.contact-info h2 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-meta {
+    margin: 2rem 0;
+}
+
+.info-meta p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.info-meta i {
+    color: var(--accent-color);
+    margin-right: 1rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    color: var(--color-text-main);
+    font-size: 1.3rem;
+    width: 46px;
+    height: 46px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-panel-soft);
+    transition: color 0.3s, border-color 0.3s, transform 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+.contact-form {
+    background: var(--bg-panel-soft);
+    padding: 2.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    background-color: #111217;
+    color: var(--color-text-main);
+    font-family: inherit;
+    border-radius: 6px;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.submit-btn {
+    background-color: var(--accent-color);
+    color: #111217;
+    padding: 1rem 2rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 800;
+    width: 100%;
+    border-radius: 6px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: var(--accent-secondary);
+    transform: translateY(-2px);
+}
+
+/* ==========================================
+   6. PIE DE PÁGINA (Footer)
+   ========================================== */
+.footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border-color);
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    margin-top: 4rem;
+    background: #0b0c0f;
+}
+
+/* ==========================================
+   7. RESPONSIVE DESIGN (Pantallas móviles)
+   ========================================== */
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(16, 17, 20, 0.98);
+        padding: 2rem;
+        border-bottom: 1px solid var(--border-color);
+        gap: 1.5rem;
+    }
+
+    .nav-menu.open {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .carousel-container { height: 62vh; }
+    .carousel-container::before,
+    .carousel-container::after { height: 6vh; }
+    .carousel-caption {
+        left: 2rem;
+        right: 2rem;
+        bottom: 13%;
+    }
+    .carousel-caption h2 { font-size: 2rem; }
+    .carousel-caption p { font-size: 0.95rem; }
+
+    .about-section, .contact-section {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 1.25rem;
+    }
+    
+    .skills ul { grid-template-columns: 1fr; }
+}
